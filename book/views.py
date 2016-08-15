@@ -4,8 +4,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from book.models import Book
 from book.serializers import BookSerializer
+from ratelimit.decorators import ratelimit
 # Create your views here.
 
+@ratelimit(key='ip', rate='10/m', block=True)
 @api_view(['GET', 'POST'])
 def book_list(request, format=None):
     if request.method == 'GET':
@@ -20,7 +22,7 @@ def book_list(request, format=None):
              return Response(serializer.data, status=status.HTTP_201_CREATED)
          return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@ratelimit(key='ip', rate='5/m', block=True)
 @api_view(['GET'])
 def book_detail(request, pk, format=None):
     try:
