@@ -7,7 +7,7 @@ class Book(models.Model):
 	authors = models.CharField(max_length = 100)
 	publication_date = models.DateTimeField()
 	publisher = models.CharField(max_length=100)
-	summary = models.TextField()
+	summary = models.TextField(max_length = 400)
 	price = models.DecimalField(max_digits = 10, decimal_places = 3)
 	link = models.URLField(max_length = 300)
 	cover = models.URLField(max_length = 300)

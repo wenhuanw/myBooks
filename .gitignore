@@ -1,7 +1,7 @@
 
 *.pyc
 __pycache__
-myvenv2
+myvenv4
 mydb
 /static
 .DS_Store
